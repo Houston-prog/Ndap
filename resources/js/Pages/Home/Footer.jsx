@@ -1,0 +1,106 @@
+import { Link } from "@inertiajs/react";
+
+export default function Footer() {
+    return (
+        <section className="bg-neutral-950 border-t border-neutral-800 py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 sm:grid-cols-1 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-700 rounded-lg flex items-center justify-center">
+                                <img src="images/logo.png" alt="" className="w-15 h-15" />
+                            </div>
+                            <span class="font-display text-xl font-bold text-white">
+                                Ndap-Un Toit
+                            </span>
+                        </div>
+                        <p class="text-neutral-500 text-sm">
+                            Votre partenaire incontournable pour trouver l'habitation parfaite
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">
+                            Liens rapides
+                        </h4>
+                        <ul className="space-y-2">
+                            <li>
+                                <Link href="#accueil" className="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Accueil
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#properties" className="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Propriétés
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#about" className="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    A propos de nous
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="#contact" className="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Contact
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={route('login')} className="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Connexion
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">Locations</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Yaoundé
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Douala
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-neutral-400 hover:text-orange-500 text-sm transition-colors">
+                                    Buea
+                                </a>
+                            </li>         
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">Contact</h4>
+                        <ul class="space-y-2">
+                            <li class="text-neutral-400 text-sm">📍 Yaoundé, Cameroun</li>
+                            <li class="text-neutral-400 text-sm">📞 (237) 620 169 720 (Whatsapp)</li>
+                            <li class="text-neutral-400 text-sm">✉️ admin@ndapuntoit.com</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-neutral-500 text-sm">
+                        © 2026 Ndap-Un Toit. All rights reserved.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-orange-600 rounded-lg flex items-center justify-center transition-all">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a> 
+                        <a href="#" class="w-10 h-10 bg-neutral-800 hover:bg-orange-600 rounded-lg flex items-center justify-center transition-all">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewbox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
