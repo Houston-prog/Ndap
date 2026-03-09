@@ -1,3 +1,5 @@
+import { Link } from '@inertiajs/react';
+import { File } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 
 export default function AnnonceModal({ property, isOpen, onClose }) {
@@ -64,12 +66,22 @@ export default function AnnonceModal({ property, isOpen, onClose }) {
                 </div>
 
                 <div className="md:w-1/2 p-8">
-                    <h2 className="text-3xl font-bold text-white mt-2 mb-4 font-display">{property.titre}</h2>
+                    <h2 className="text-3xl font-bold text-white mt-2 mb-4 font-display">
+                        {property.titre}
+                    </h2>
 
                     <div className="bg-neutral-800/50 p-4 rounded-xl mb-6">
                         <p className="text-neutral-300 text-sm leading-relaxed">
                             {property.description || "Aucune description fournie pour ce bien d'exception."}
                         </p>
+                    </div>
+
+                    <div className="bg-neutral-900/50 p-4 rounded-xl mb-6">
+                        <button className='leading-relaxed rounded-lg justify-center items-center text-orange-500 hover:text-orange-400 transition-colors'>
+                            <Link className="" href={property.lien_url || '#'} target="_blank" rel="noopener noreferrer">
+                                <img src='images/whatsapp.png' className="w-10 h-10 inline-block mr-2" />
+                            </Link>
+                        </button>
                     </div>
 
                     {/* Thumbnails row (moved here) */}

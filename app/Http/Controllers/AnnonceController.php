@@ -10,13 +10,19 @@ use Illuminate\Support\Facades\Storage;
 
 class AnnonceController extends Controller
 {
-    public function viewannonce()
+    public function viewannonce(Request $request)
     {
-        $properties = Annonce::all();
+        $query = Annonce::query();
+
+        if ($request->filled('search')) {
+            $query->where('titre', 'like', '%' . $request->input('search') . '%');
+        }
+
+        $properties = $query->latest()->get();
 
         return Inertia::render("Annonces/Annonce", [
             'properties' => $properties,
-            'image' => asset('storage/' . $properties->first()->image),
+            'filters' => $request->only(['search']),
         ]);
     }
 

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import Navbar from '../Home/Navbar'
-import PropertyCard from '../Home/PropertyCard'
-import PropertyModal from '../Home/PropertyModal';
 import Footer from '../Home/Footer';
 import AnnonceCard from './AnnonceCard';
 import AnnonceModal from './AnnonceModal';
+import { useForm } from '@inertiajs/react';
 
-export default function Annonce({ properties }) {
+export default function Annonce({ properties, filters = {} }) {
     const [selectedProperty, setSelectedProperty] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +20,16 @@ export default function Annonce({ properties }) {
         setIsModalOpen(true);
     };
 
+    const { data, setData, get } = useForm({
+        search: filters.search || '',
+    });
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        // La donnée du formulaire (`data`) est automatiquement envoyée avec la requête GET
+        get(route('annonces.view'), { preserveState: true });
+    };
+
   return (
     <div className='bg-neutral-950 min-h-screen'>
         <Navbar />
@@ -33,6 +42,21 @@ export default function Annonce({ properties }) {
                             Annonce
                         </span>
                     </div>
+
+                    <form onSubmit={handleSearch} className="mb-8 max-w-xl mx-auto">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                value={data.search}
+                                onChange={e => setData('search', e.target.value)}
+                                placeholder="Rechercher une annonce par son titre..."
+                                className="w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:border-orange-500 outline-none pr-28"
+                            />
+                            <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-600 text-white px-4 py-1.5 rounded-md hover:bg-orange-500 transition-colors font-semibold">
+                                Rechercher
+                            </button>
+                        </div>
+                    </form>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {paginatedProperties.map(item => (

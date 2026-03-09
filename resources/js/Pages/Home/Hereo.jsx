@@ -89,7 +89,7 @@ export default function Hereo() {
 
                     {/* Bloc de Recherche (Adapté du HTML original) */}
                     <form onSubmit={handleSearch} className="bg-neutral-900/80 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-neutral-800 animate-slide-up stagger-2">
-                        <div className="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4  gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2  gap-4">
                             <div>
                                 <select
                                     className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:border-orange-500 outline-none"
@@ -131,7 +131,7 @@ export default function Hereo() {
                                     <option value="Pk12">PK12</option>
                                 </select>
                             </div>
-                            <div>
+                            {/* <div>
                                 <select
                                     className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:border-orange-500 outline-none"
                                     value={data.type}
@@ -165,7 +165,7 @@ export default function Hereo() {
                                     <option value="100000">100000 - 150000 FCFA</option>
                                     <option value="150000">150000+ FCFA</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                         </div>
                         <div className="bg-orange-600 p-3 gap-4 my-6 w-full text-white font-bold rounded-lg hover:bg-orange-500 transition-all">
