@@ -19,6 +19,7 @@ class Loyers extends Model
         'contact',
         'name',
         'images',
+        'slug',
     ];
 
     // Pour transformer automatiquement le tableau d'images JSON en Array PHP

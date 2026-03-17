@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function PropertyModal({ property, isOpen, onClose }) {
+export default function FilterLocationModal({ property, isOpen, onClose }) {
     if (!isOpen || !property) return null;
 
     const images = property.images && Array.isArray(property.images) ? property.images : [];

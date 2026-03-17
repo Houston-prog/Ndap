@@ -39,6 +39,7 @@ class LoyersController extends Controller
             'description'=> 'nullable|string',
             'contact'=> 'required|string',
             'name'=> 'required|string',
+            'slug'=> 'required|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:8048',
         ]);

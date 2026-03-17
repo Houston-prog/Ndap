@@ -10,8 +10,8 @@ export default function Locations() {
         { name: 'Maisons', icon: '🏠', count: 32, slug: 'Villa', bg: 'images/ms.jpg' },
     ];
 
-    const handleFilter = (type) => {
-        router.get(route('properties.index'), { type: type });
+    const handleFilter = (slug) => {
+        router.get(route('filter.byType', { slug: slug }));
     };
 
     return (

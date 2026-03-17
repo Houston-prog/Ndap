@@ -1,7 +1,7 @@
 import { Locate, LocateIcon } from 'lucide-react';
 import React from 'react';
 
-export default function PropertyCard({ property, onViewDetails }) {
+export default function FilterLocationCard({ property, onViewDetails }) {
     return (
         <div className="group bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-800 hover:border-orange-500/50 transition-all duration-300 shadow-xl">
             <div className="relative h-64 overflow-hidden">
@@ -14,7 +14,7 @@ export default function PropertyCard({ property, onViewDetails }) {
                 )}
 
                 <div className="absolute top-4 left-4 right-4 flex justify-between gap-2">
-                    <div className="text-white bg-orange-600 px-3 py-1 rounded-lg font-bold">
+                    <div className="bg-orange-600 text-white px-3 py-1 rounded-lg font-bold">
                         {new Intl.NumberFormat().format(property.price)} FCFA
                     </div>
                     <div className="bg-neutral-400 text-white px-3 py-1 rounded-lg font-bold">

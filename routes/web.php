@@ -20,6 +20,8 @@ use App\Http\Controllers\PropertiesController;
 // });
 
 Route::get('/', [PropertiesController::class,'index'])->name('welcome');
+Route::get('/filter-properties', [PropertiesController::class, 'filterProperties'])->name('filter.properties');
+Route::get('/filter-properties/{slug}', [PropertiesController::class, 'filterByType'])->name('filter.byType');
 Route::get('/vue', [AnnonceController::class,'viewannonce'])->name('annonces');
 
 // Route::get('/dashboard', function () {

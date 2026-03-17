@@ -41,7 +41,7 @@ export default function Hereo() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        get(route('properties.index')); // Redirige vers la liste des biens avec les filtres
+        get(route('filter.properties', data)); // Redirige vers la liste des biens avec les filtres
     };
 
     return (

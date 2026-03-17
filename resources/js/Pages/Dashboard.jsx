@@ -1,8 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm, router } from '@inertiajs/react';
 import { useState } from 'react';
-import AnnonceDashboard from './Annonces/AnnonceDashboard';
-import AnnonceForm from './Annonces/AnnonceForm';
 
 export default function Dashboard({ properties, annonces }) {
     const [view, setView] = useState('dashboard');
@@ -22,6 +20,7 @@ export default function Dashboard({ properties, annonces }) {
         description: '',
         contact: '',
         name: '',
+        slug: '',
         images: [], // Tableau d'images sélectionnées
     });
 
@@ -198,6 +197,9 @@ export default function Dashboard({ properties, annonces }) {
                                                     </p>
                                                     <p className='text-neutral-400 text-sm'>
                                                         Propriétaire: {prop.name}
+                                                    </p>
+                                                    <p className='text-neutral-400 text-sm'>
+                                                        Propriétaire: {prop.slug}
                                                     </p>
                                                 </div>
                                             </div>
@@ -414,8 +416,8 @@ export default function Dashboard({ properties, annonces }) {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="md:col-span-2">
+                                <div className="grid grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                                    <div className="">
                                         <label className="block text-sm text-neutral-400 mb-1">Propriétaire *</label>
                                         <input
                                             type="text"
@@ -424,6 +426,19 @@ export default function Dashboard({ properties, annonces }) {
                                             className="w-full bg-black border border-neutral-700 rounded-lg p-2.5"
                                             required
                                         />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm text-neutral-400 mb-1">Type *</label>
+                                        <select value={data.slug} onChange={e => setData('slug', e.target.value)}
+                                            className="w-full bg-black border border-neutral-700 rounded-lg p-2.5">
+                                            <option value="residentiel">Appartement/Studios</option>
+                                            <option value="chambres">Chambres</option>
+                                            <option value="meubles">Meublés</option>
+                                            <option value="professionnel">Bureaux/Espaces commerciales</option>
+                                            <option value="hotel">Hôtel/Motels</option>
+                                            <option value="Villa">Maisons</option>
+                                        </select>
                                     </div>
 
                                 </div>

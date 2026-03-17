@@ -5,18 +5,72 @@ use Inertia\Inertia;
 use App\Models\Loyers;
 use App\Models\Properties;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\RedirectResponse;
 
 class PropertiesController extends Controller
 {
-    public function index ()
+    public function index()
     {
-        $properties = Loyers::all();
+        $properties = DB::table('loyers');
 
+        $properties = $properties->get()->map(function ($property) {
+            if (!empty($property->images)) {
+                $images = json_decode($property->images);
+                if (is_array($images) && !empty($images)) {
+                    // Ajoute une propriété 'image' avec l'URL de la première image.
+                    $property->image = asset('storage/' . $images[0]);
+                    // Remplace la chaîne JSON 'images' par un tableau d'URLs complètes.
+                    $property->images = array_map(fn($img) => asset('storage/' . $img), $images);
+                } else {
+                    $property->image = null;
+                    $property->images = [];
+                }
+            }
+            return $property;
+        });
         return Inertia::render("Welcome", [
             'properties' => $properties,
-            'image' => asset('storage/' . $properties->first()->image),
+            'image' => $properties->first() ? $properties->first()->image : null,
+        ]);
+    }
+
+    public function filterProperties(Request $request)
+
+    {
+        $location = $request->input('location');
+        $locality = $request->input('locality');
+
+        $query = DB::table('loyers');
+
+        if ($location) {
+            $query->where('location', $location);
+        }
+
+        if ($locality) {
+            $query->where('locality', $locality);
+        }
+
+        $properties = $query->get()->map(function ($property) {
+            if (!empty($property->images)) {
+                $images = json_decode($property->images);
+                if (is_array($images) && !empty($images)) {
+                    // Ajoute une propriété 'image' avec l'URL de la première image.
+                    $property->image = asset('storage/' . $images[0]);
+                    // Remplace la chaîne JSON 'images' par un tableau d'URLs complètes.
+                    $property->images = array_map(fn($img) => asset('storage/' . $img), $images);
+                } else {
+                    $property->image = null;
+                    $property->images = [];
+                }
+            }
+            return $property;
+        });
+
+        return Inertia::render("Home/FilterLocations", [
+            'properties' => $properties,
+            'image' => $properties->first() ? $properties->first()->image : null,
         ]);
     }
 
@@ -66,4 +120,39 @@ class PropertiesController extends Controller
             'filters' => $request->only(['location', 'locality', 'type', 'price']),
         ]);
     }
+
+    /**
+     * Filtre les propriétés par type.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $slug
+     * @return \Inertia\Response
+     */
+    public function filterByType(Request $request, string $slug)
+    {
+        $properties = DB::table('loyers')
+            ->where('slug', $slug)
+            ->get()
+            ->map(function ($property) {
+                if (!empty($property->images)) {
+                    $images = json_decode($property->images);
+                    if (is_array($images) && !empty($images)) {
+                        // Ajoute une propriété 'image' avec l'URL de la première image.
+                        $property->image = asset('storage/' . $images[0]);
+                        // Remplace la chaîne JSON 'images' par un tableau d'URLs complètes.
+                        $property->images = array_map(fn($img) => asset('storage/' . $img), $images);
+                    } else {
+                        $property->image = null;
+                        $property->images = [];
+                    }
+                }
+                return $property;
+            });
+
+        // On retourne la vue Inertia avec les propriétés filtrées
+        return Inertia::render('Home/LocationSlug', [
+            'properties' => $properties,
+            'filters' => ['slug' => $slug], // Passe le type comme filtre actuel
+        ]);
+    }
+
 }

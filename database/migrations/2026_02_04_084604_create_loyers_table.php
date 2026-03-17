@@ -25,6 +25,7 @@ return new class extends Migration
             $table->json('images')->nullable();
             $table->string('contact');
             $table->string('name');
+            $table->string('slug');
             $table->timestamps();
         });
     }
