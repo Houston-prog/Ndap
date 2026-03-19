@@ -34,7 +34,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    //Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces');
     Route::get('/annonces/dashboard', [AnnonceController::class, 'dash'])->name('annonces.dash');
     Route::post('/annonces/dashboard', [AnnonceController::class, 'store'])->name('annonces.store');
     Route::post('/annonces/{loyer}', [AnnonceController::class, 'update'])->name('annonces.update'); // Post car envoi de fichier
